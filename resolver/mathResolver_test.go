@@ -2,7 +2,6 @@ package resolver
 
 import (
 	"testing"
-	"calculator/resolver"
 	"go/constant"
 	"errors"
 )
@@ -26,21 +25,18 @@ var RESULTS = map[string]ExpectedValues{
 }
 
 func TestResolveBoolExpr(t *testing.T)  {
-	//for toEvaluate, expected := range RESULTS  {
-	//	res, err := resolver.Resolve(toEvaluate)
-	//	if (err == nil && expected.err != nil) || (err != nil && expected.err == nil){
-	//		t.Errorf("For expression '%s': Error mismatch",toEvaluate)
-	//	}
-	//
-	//	if (res == nil && expected.value != nil) || (err != nil && expected.err == nil){
-	//		t.Errorf("For expression '%s': [Expected] %t != %t [Actual]", toEvaluate, expected.value, res)
-	//	}
-	//
-	//	if res != nil && (res.String() != expected.value.String()) {
-	//		t.Errorf("For expression '%s': [Expected] %t != %t [Actual]", toEvaluate, expected.value, res)
-	//	}
-	//}
+	for toEvaluate, expected := range RESULTS  {
+		res, err := Resolve(toEvaluate)
+		if (err == nil && expected.err != nil) || (err != nil && expected.err == nil){
+			t.Errorf("For expression '%s': Error mismatch",toEvaluate)
+		}
 
-	val, _ := resolver.Resolve2("5*2")
-	println(val)
+		if (res == nil && expected.value != nil) || (err != nil && expected.err == nil){
+			t.Errorf("For expression '%s': [Expected] %t != %t [Actual]", toEvaluate, expected.value, res)
+		}
+
+		if res != nil && (res.String() != expected.value.String()) {
+			t.Errorf("For expression '%s': [Expected] %t != %t [Actual]", toEvaluate, expected.value, res)
+		}
+	}
 }

@@ -2,12 +2,11 @@ package resolver
 
 import (
 	"testing"
-	"calculator/resolver"
 )
 
 func BenchmarkResolver(b *testing.B) {
 	for i := 0; i<b.N;i++ {
-		resolver.Resolve("((1 + 1) - (4 * 5))*0 + 2 == (1+1.1)*2")
+		Resolve("((1 + 1) - (4 * 5))*0 + 2 == (1+1.1)*2")
 	}
 }
 
@@ -29,7 +28,6 @@ func BenchmarkEvaluate(b *testing.B) {
 	//	//"tan(10)cos(20)",
 	}
 	for i := 0; i < b.N; i++ {
-		//resolver.Resolve(tests[i%len(tests)])
-		resolver.Resolve2(tests[0])
+		Resolve(tests[i%len(tests)])
 	}
 }
